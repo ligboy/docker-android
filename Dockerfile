@@ -67,7 +67,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y orac
 # ------------------------------------------------------
 # --- Download Android SDK tools into $ANDROID_HOME
 
-RUN cd /opt && wget -q https://dl.google.com/android/repository/tools_r25.2.5-linux.zip -O android-sdk-tools.zip
+#RUN cd /opt && wget -q https://dl.google.com/android/repository/tools_r25.2.5-linux.zip -O android-sdk-tools.zip
+# sdk-tools-linux-3773319.zip -> tools_r25.3.1
+RUN cd /opt && wget -q https://dl.google.com/android/repository/sdk-tools-linux-3773319.zip -O android-sdk-tools.zip
 RUN cd /opt && unzip -q android-sdk-tools.zip
 RUN mkdir -p ${ANDROID_HOME}
 RUN cd /opt && mv tools/ ${ANDROID_HOME}/tools/
@@ -79,7 +81,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 # --- Install Android SDKs and other build packages
 
 # Accept all licenses before installing components.
-RUN yes | sdkmanager --licenses --channel=3
+RUN yes | sdkmanager --licenses
 
 # Platform tools
 RUN sdkmanager "platform-tools"
