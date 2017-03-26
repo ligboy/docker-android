@@ -44,8 +44,8 @@ RUN git config --global user.name "Meitu Robot"
 
 # ------------------------------------------------------
 # --- Android Debug Keystore
-RUN mkdir -p /root/.android
-COPY ./android/debug.keystore /root/.android/debug.keystore
+#RUN mkdir -p /root/.android
+#COPY ./android/debug.keystore /root/.android/debug.keystore
 
 # Dependencies to execute Android builds
 RUN dpkg --add-architecture i386
