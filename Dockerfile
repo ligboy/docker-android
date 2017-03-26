@@ -10,21 +10,16 @@ RUN locale-gen en_US.UTF-8
 ENV LANG "en_US.UTF-8"
 ENV LANGUAGE "en_US.UTF-8"
 ENV LC_ALL "en_US.UTF-8"
-# - CI
-ENV CI "true"
 
 # ------------------------------------------------------
 # --- Base pre-installed tools
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y \
-    build-essential \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y --no-install-recommends \
     curl \
     debconf-utils \
     git \
-    imagemagick\
     mercurial \
     python \
     python-software-properties \
-    rsync \
     sudo \
     software-properties-common \
     tree \
@@ -50,7 +45,7 @@ RUN git config --global user.name "Meitu Robot"
 # Dependencies to execute Android builds
 RUN dpkg --add-architecture i386
 RUN apt-get update -qq
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y --no-install-recommends \
     libc6:i386 \
     libgcc1:i386 \
     libncurses5:i386 \
@@ -62,7 +57,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y \
 ## Oracle JDK
 RUN add-apt-repository -y ppa:webupd8team/java && apt-get update -qq
 RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y oracle-java8-installer oracle-java8-set-default
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && apt-get install -y --no-install-recommends \
+    oracle-java8-installer \
+    oracle-java8-set-default
 
 # ------------------------------------------------------
 # --- Download Android SDK tools into $ANDROID_HOME
@@ -96,8 +93,8 @@ RUN sdkmanager "platforms;android-21"
 RUN sdkmanager "platforms;android-20"
 RUN sdkmanager "platforms;android-19"
 RUN sdkmanager "platforms;android-18"
-RUN sdkmanager "platforms;android-17"
-RUN sdkmanager "platforms;android-16"
+#RUN sdkmanager "platforms;android-17"
+#RUN sdkmanager "platforms;android-16"
 RUN sdkmanager "platforms;android-15"
 
 # build tools
@@ -144,17 +141,12 @@ RUN sdkmanager "cmake;3.6.3155560"
 # ------------------------------------------------------
 # --- Install Maven
 RUN apt-get purge maven maven2
-RUN apt-get update
-RUN apt-get -y install maven
+RUN apt-get update -qq && apt-get -y --no-install-recommends install maven gradle
 RUN mvn --version
 # Install Git-lfs
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install git-lfs
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install git-lfs
 RUN git lfs install
-# Gradle PPA
-RUN apt-get update
-RUN apt-get -y install gradle
-RUN gradle -v
 
 ## Gradle Wrapper pre-download.
 #RUN mkdir -p /tmp/gradle-wrapper && cd /tmp/gradle-wrapper
@@ -164,7 +156,7 @@ RUN gradle -v
 # ------------------------------------------------------
 
 # Cleanup
-RUN apt-get clean
+RUN apt-get clean -y && apt-get autoremove -y
 RUN rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Go to workspace
