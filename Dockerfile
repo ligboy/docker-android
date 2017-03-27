@@ -90,7 +90,6 @@ RUN sdkmanager "platforms;android-24"
 RUN sdkmanager "platforms;android-23"
 RUN sdkmanager "platforms;android-22"
 RUN sdkmanager "platforms;android-21"
-RUN sdkmanager "platforms;android-20"
 RUN sdkmanager "platforms;android-19"
 RUN sdkmanager "platforms;android-18"
 #RUN sdkmanager "platforms;android-17"
@@ -110,7 +109,6 @@ RUN sdkmanager "build-tools;23.0.2"
 RUN sdkmanager "build-tools;23.0.1"
 RUN sdkmanager "build-tools;22.0.1"
 RUN sdkmanager "build-tools;21.1.2"
-RUN sdkmanager "build-tools;20.0.0"
 RUN sdkmanager "build-tools;19.1.0"
 
 # Extras
@@ -153,7 +151,7 @@ RUN git lfs install
 
 # Cleanup
 RUN apt-get clean -y && apt-get autoremove -y
-RUN rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 # Go to workspace
 RUN mkdir -p /var/workspace
