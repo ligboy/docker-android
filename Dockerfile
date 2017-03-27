@@ -131,6 +131,9 @@ RUN sdkmanager "add-ons;addon-google_apis-google-22"
 RUN sdkmanager "add-ons;addon-google_apis-google-21"
 RUN sdkmanager "add-ons;addon-google_apis-google-19"
 
+# NDK dependency, Convenient for updating. cmake only about 30MiB.
+RUN sdkmanager "cmake;3.6.3155560"
+
 # ------------------------------------------------------
 # --- Install Maven
 RUN apt-get purge maven maven2
