@@ -2,7 +2,6 @@ FROM ubuntu:16.04
 LABEL maintainer "Ligboy.Liu <ligboy@gmail.com>"
 
 ENV ANDROID_HOME /opt/android-sdk
-ENV ANDROID_NDK_HOME /opt/android-sdk/ndk-bundle
 
 # Environments
 # - Language
@@ -72,7 +71,7 @@ RUN mkdir -p ${ANDROID_HOME}
 RUN cd /opt && mv tools/ ${ANDROID_HOME}/tools/
 RUN cd /opt && rm -f android-sdk-tools.zip
 
-ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_NDK_HOME}
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 
 # ------------------------------------------------------
 # --- Install Android SDKs and other build packages
