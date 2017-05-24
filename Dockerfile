@@ -10,7 +10,7 @@ ENV ANDROID_HOME /opt/android-sdk
 # sdk-tools-linux-3773319.zip -> tools_r25.3.1
 RUN mkdir -p ${ANDROID_HOME}
 RUN cd /opt \
-    && wget -q https://dl.google.com/android/repository/sdk-tools-linux-3773319.zip -O android-sdk-tools.zip \
+    && wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O android-sdk-tools.zip \
     && unzip -q android-sdk-tools.zip \
     && mv tools/ ${ANDROID_HOME}/tools/ \
     && rm -f android-sdk-tools.zip
@@ -37,6 +37,7 @@ RUN sdkmanager "build-tools;24.0.0"
 RUN sdkmanager "build-tools;25.0.0"
 RUN sdkmanager "build-tools;25.0.1"
 RUN sdkmanager "build-tools;25.0.2"
+RUN sdkmanager "build-tools;25.0.3"
 
 # Constraint Layout
 RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.0"
@@ -77,10 +78,10 @@ RUN sdkmanager "tools"
 RUN sdkmanager "extras;android;m2repository"
 RUN sdkmanager "extras;google;m2repository"
 RUN sdkmanager "extras;google;google_play_services"
+RUN sdkmanager "extras;google;instantapps"
 
 # Cleanup
-RUN apt-get clean -y && apt-get autoremove -y
-RUN rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
+RUN apt-get clean -y && apt-get autoremove -y & rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 # Go to workspace
 RUN mkdir -p /var/workspace
