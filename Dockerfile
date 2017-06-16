@@ -9,19 +9,18 @@ ENV ANDROID_HOME /opt/android-sdk
 #RUN cd /opt && wget -q https://dl.google.com/android/repository/tools_r25.2.5-linux.zip -O android-sdk-tools.zip
 # sdk-tools-linux-3773319.zip -> tools_r25.3.1
 RUN mkdir -p ${ANDROID_HOME}
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 RUN cd /opt \
     && wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O android-sdk-tools.zip \
-    && unzip -q android-sdk-tools.zip \
+    && unzip -qq android-sdk-tools.zip \
     && mv tools/ ${ANDROID_HOME}/tools/ \
-    && rm -f android-sdk-tools.zip
-
-ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+    && rm -f android-sdk-tools.zip \
+# Accept all licenses before installing components.
+    && yes | sdkmanager --licenses \
+    && sdkmanager "tools"
 
 # ------------------------------------------------------
 # --- Install Android SDKs and other build packages
-
-# Accept all licenses before installing components.
-RUN yes | sdkmanager --licenses
 
 # build tools
 RUN sdkmanager "build-tools;19.1.0"
@@ -38,6 +37,7 @@ RUN sdkmanager "build-tools;25.0.0"
 RUN sdkmanager "build-tools;25.0.1"
 RUN sdkmanager "build-tools;25.0.2"
 RUN sdkmanager "build-tools;25.0.3"
+RUN sdkmanager "build-tools;26.0.0"
 
 # Constraint Layout
 RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.0"
@@ -52,16 +52,13 @@ RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-la
 RUN sdkmanager "cmake;3.6.3155560"
 
 # SDKs
-#RUN sdkmanager "platforms;android-15"
-#RUN sdkmanager "platforms;android-16"
-#RUN sdkmanager "platforms;android-17"
-#RUN sdkmanager "platforms;android-18"
 RUN sdkmanager "platforms;android-19"
 RUN sdkmanager "platforms;android-21"
 RUN sdkmanager "platforms;android-22"
 RUN sdkmanager "platforms;android-23"
 RUN sdkmanager "platforms;android-24"
 RUN sdkmanager "platforms;android-25"
+RUN sdkmanager "platforms;android-26"
 
 # google apis
 RUN sdkmanager "add-ons;addon-google_apis-google-19"
