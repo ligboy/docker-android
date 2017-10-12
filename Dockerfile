@@ -51,7 +51,7 @@ RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-la
 RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 
 # NDK dependency, Convenient for updating. cmake only about 30MiB.
-RUN sdkmanager "cmake;3.6.3155560"
+RUN sdkmanager "cmake;3.6.4111459"
 
 # SDKs
 RUN sdkmanager "platforms;android-19"
