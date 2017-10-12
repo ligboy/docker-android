@@ -38,6 +38,8 @@ RUN sdkmanager "build-tools;25.0.1"
 RUN sdkmanager "build-tools;25.0.2"
 RUN sdkmanager "build-tools;25.0.3"
 RUN sdkmanager "build-tools;26.0.0"
+RUN sdkmanager "build-tools;26.0.1"
+RUN sdkmanager "build-tools;26.0.2"
 
 # Constraint Layout
 RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.0"
