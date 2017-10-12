@@ -23,7 +23,6 @@ RUN cd /opt \
 # --- Install Android SDKs and other build packages
 
 # build tools
-RUN sdkmanager "build-tools;19.1.0"
 RUN sdkmanager "build-tools;21.1.2"
 RUN sdkmanager "build-tools;22.0.1"
 RUN sdkmanager "build-tools;23.0.1"
@@ -54,7 +53,6 @@ RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-la
 RUN sdkmanager "cmake;3.6.4111459"
 
 # SDKs
-RUN sdkmanager "platforms;android-19"
 RUN sdkmanager "platforms;android-21"
 RUN sdkmanager "platforms;android-22"
 RUN sdkmanager "platforms;android-23"
@@ -63,7 +61,6 @@ RUN sdkmanager "platforms;android-25"
 RUN sdkmanager "platforms;android-26"
 
 # google apis
-RUN sdkmanager "add-ons;addon-google_apis-google-19"
 RUN sdkmanager "add-ons;addon-google_apis-google-21"
 RUN sdkmanager "add-ons;addon-google_apis-google-22"
 RUN sdkmanager "add-ons;addon-google_apis-google-23"
@@ -71,7 +68,6 @@ RUN sdkmanager "add-ons;addon-google_apis-google-24"
 
 # Platform tools
 RUN sdkmanager "platform-tools"
-RUN sdkmanager "tools"
 
 # Extras
 RUN sdkmanager "extras;android;m2repository"
