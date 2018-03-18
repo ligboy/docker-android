@@ -39,6 +39,11 @@ RUN sdkmanager "build-tools;25.0.3"
 RUN sdkmanager "build-tools;26.0.0"
 RUN sdkmanager "build-tools;26.0.1"
 RUN sdkmanager "build-tools;26.0.2"
+RUN sdkmanager "build-tools;26.0.3"
+RUN sdkmanager "build-tools;27.0.0"
+RUN sdkmanager "build-tools;27.0.1"
+RUN sdkmanager "build-tools;27.0.2"
+RUN sdkmanager "build-tools;27.0.3"
 
 # Constraint Layout
 RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.0"
@@ -59,6 +64,7 @@ RUN sdkmanager "platforms;android-23"
 RUN sdkmanager "platforms;android-24"
 RUN sdkmanager "platforms;android-25"
 RUN sdkmanager "platforms;android-26"
+RUN sdkmanager "platforms;android-27"
 
 # google apis
 RUN sdkmanager "add-ons;addon-google_apis-google-21"
