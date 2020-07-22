@@ -44,6 +44,16 @@ RUN sdkmanager "build-tools;27.0.0"
 RUN sdkmanager "build-tools;27.0.1"
 RUN sdkmanager "build-tools;27.0.2"
 RUN sdkmanager "build-tools;27.0.3"
+RUN sdkmanager "build-tools;28.0.0"
+RUN sdkmanager "build-tools;28.0.1"
+RUN sdkmanager "build-tools;28.0.2"
+RUN sdkmanager "build-tools;28.0.3"
+RUN sdkmanager "build-tools;29.0.0"
+RUN sdkmanager "build-tools;29.0.1"
+RUN sdkmanager "build-tools;29.0.2"
+RUN sdkmanager "build-tools;29.0.3"
+RUN sdkmanager "build-tools;30.0.0"
+RUN sdkmanager "build-tools;30.0.1"
 
 # Constraint Layout
 RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.0"
@@ -56,6 +66,7 @@ RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-la
 
 # NDK dependency, Convenient for updating. cmake only about 30MiB.
 RUN sdkmanager "cmake;3.6.4111459"
+RUN sdkmanager "cmake;3.10.2.4988404"
 
 # SDKs
 RUN sdkmanager "platforms;android-21"
@@ -65,12 +76,15 @@ RUN sdkmanager "platforms;android-24"
 RUN sdkmanager "platforms;android-25"
 RUN sdkmanager "platforms;android-26"
 RUN sdkmanager "platforms;android-27"
+RUN sdkmanager "platforms;android-28"
+RUN sdkmanager "platforms;android-29"
+RUN sdkmanager "platforms;android-30"
 
-# google apis
-RUN sdkmanager "add-ons;addon-google_apis-google-21"
-RUN sdkmanager "add-ons;addon-google_apis-google-22"
-RUN sdkmanager "add-ons;addon-google_apis-google-23"
-RUN sdkmanager "add-ons;addon-google_apis-google-24"
+# Sources
+RUN sdkmanager "sources;android-26"
+RUN sdkmanager "sources;android-27"
+RUN sdkmanager "sources;android-28"
+RUN sdkmanager "sources;android-29"
 
 # Platform tools
 RUN sdkmanager "platform-tools"
@@ -80,6 +94,7 @@ RUN sdkmanager "extras;android;m2repository"
 RUN sdkmanager "extras;google;m2repository"
 RUN sdkmanager "extras;google;google_play_services"
 RUN sdkmanager "extras;google;instantapps"
+RUN sdk manager "cmdline-tools;latest"
 
 # Cleanup
 RUN apt-get clean -y && apt-get autoremove -y & rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
