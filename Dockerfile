@@ -6,15 +6,13 @@ ENV ANDROID_HOME /opt/android-sdk
 # ------------------------------------------------------
 # --- Download Android SDK tools into $ANDROID_HOME
 
-#RUN cd /opt && wget -q https://dl.google.com/android/repository/tools_r25.2.5-linux.zip -O android-sdk-tools.zip
-# sdk-tools-linux-3773319.zip -> tools_r25.3.1
-RUN mkdir -p ${ANDROID_HOME}
+RUN mkdir -p ${ANDROID_HOME} && mkdir -p ${ANDROID_HOME}/tools && mkdir -p ${ANDROID_HOME}/platform-tools
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 RUN cd /opt \
-    && wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O android-sdk-tools.zip \
-    && unzip -qq android-sdk-tools.zip \
-    && mv tools/ ${ANDROID_HOME}/tools/ \
-    && rm -f android-sdk-tools.zip \
+    && wget -q https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip -O commandlinetools-linux.zip \
+    && unzip -qq commandlinetools-linux \
+    && mv -f tools/ ${ANDROID_HOME}/tools/ \
+    && rm -f commandlinetools-linux.zip \
 # Accept all licenses before installing components.
     && yes | sdkmanager --licenses \
     && sdkmanager "tools"
